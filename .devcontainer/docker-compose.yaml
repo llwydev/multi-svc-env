@@ -23,6 +23,8 @@ services:
     entrypoint: ["sleep", "infinity"]
     depends_on:
       - minikube
+    command: >
+      sh -c "minikube start"
   
   aws-cli:
     image: amazon/aws-cli:latest
@@ -31,9 +33,3 @@ services:
       - ~/.aws:/root/.aws:ro
       - ..:/workspace
     entrypoint: ["sleep", "infinity"]
-
-  git-cli:
-    image: alpine/git:latest
-    network_mode: host
-
-  
