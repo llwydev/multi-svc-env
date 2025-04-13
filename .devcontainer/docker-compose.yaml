@@ -1,0 +1,38 @@
+services:
+  dev-env:
+    container_name: multi-svc-env
+    build: .
+    network_mode: host
+    volumes:
+      - ..:/workspace:cached
+      - vscode:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.aws:/home/vscode/.aws:ro
+      - ~/.minikube:/home/vscode/.minikube
+    environment:
+      - MINI_KUBE=/home/vscode/.minikube
+      - AWS_PROFILE=default
+    user: vscode
+
+  kubectl:
+    image: bitnami/kubectl:1.32.3
+    network_mode: host
+    volumes:
+      - ~/.kube:/root/.kube
+    entrypoint: ["sleep", "infinity"]
+    depends_on:
+      - minikube
+  
+  aws-cli:
+    image: amazon/aws-cli:latest
+    network_mode: host
+    volumes:
+      - ~/.aws:/root/.aws:ro
+      - ..:/workspace
+    entrypoint: ["sleep", "infinity"]
+
+  git-cli:
+    image: alpine/git:latest
+    network_mode: host
+    
+  

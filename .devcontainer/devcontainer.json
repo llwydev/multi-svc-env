@@ -1,0 +1,16 @@
+{
+    "name": "Multi-Service DevEnv",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "dev-env",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "amazonwebservices.aws-toolkit-vscode",
+                "ms-kubernetes-tools.vscode-kubernetes-tools"
+            ]
+        }
+    },
+    "shutdownAction": "stopCompose"
+  }
