@@ -6,12 +6,10 @@ services:
     network_mode: host
     volumes:
       - ..:/workspace:cached
-      - vscode:/workspace
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/.aws:/home/vscode/.aws:ro
       - ~/.minikube:/home/vscode/.minikube
     environment:
-      - MINI_KUBE=/home/vscode/.minikube
       - AWS_PROFILE=default
     user: vscode
 
@@ -21,10 +19,6 @@ services:
     volumes:
       - ~/.kube:/root/.kube
     entrypoint: ["sleep", "infinity"]
-    depends_on:
-      - minikube
-    command: >
-      sh -c "minikube start"
   
   aws-cli:
     image: amazon/aws-cli:latest
