@@ -1,7 +1,9 @@
 services:
   dev-env:
     container_name: multi-svc-env
-    build: .
+    build:
+      context: .
+      dockerfile: dev-env.Dockerfile
     network_mode: host
     volumes:
       - ..:/workspace:cached
@@ -34,5 +36,5 @@ services:
   git-cli:
     image: alpine/git:latest
     network_mode: host
-    
+
   
