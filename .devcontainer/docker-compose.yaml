@@ -1,6 +1,5 @@
 services:
   dev-env:
-    container_name: multi-svc-env
     build:
       context: .
       dockerfile: dev-env.Dockerfile
